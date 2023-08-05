@@ -80,7 +80,7 @@ namespace Ecommerce.BL.Services
            
 
            await productservice.Updateproduct(product);
-            await repository.Delete(id);
+            await repository.Delete(discountapplied_Product.ID);
         }
 
 

@@ -102,6 +102,16 @@ namespace Ecommerce.EcommerceAPI.controllers
 
         }
 
+        [HttpDelete]
+        [Route("delete/productdiscount")]
+
+        public async Task<ActionResult> deleteproductdiscount(discountapplied_product discountapplied_Product) 
+        {
+            await applydiscountservice.deleteproductdiscount(discountapplied_Product);
+
+            return Ok("discount on product is removed successfully");
+        }
+
 
 
     }

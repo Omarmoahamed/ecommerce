@@ -18,6 +18,11 @@ builder.Services.AddScoped<Iapplydiscountservice, Applieddiscount>();
 builder.Services.AddScoped<Idiscountservice, discountservice>();
 builder.Services.AddScoped<Iapplydiscountservice, Applieddiscount>();
 builder.Services.AddScoped<Iproductservice, productservice>();
+builder.Services.AddScoped<IOrderservice, Orderservice>();
+builder.Services.AddScoped<Irateservice, Rateservice>();
+builder.Services.AddScoped<Icategoryservice,Categoryservice>();
+builder.Services.AddHttpContextAccessor();
+
 #endregion 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(opts => 

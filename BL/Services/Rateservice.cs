@@ -41,7 +41,7 @@ namespace Ecommerce.BL.Services
             await repository.Add(rate);
             var ratecount = repository.GetAllasync().Result.Count();
             product.rate = (product.rate+rating)/ ratecount;
-            productservice.Updateproduct(product);
+          await  productservice.Updateproduct(product);
             
         }
 
@@ -56,7 +56,7 @@ namespace Ecommerce.BL.Services
 
             var ratecount = repository.GetAllasync().Result.Count();
             product.rate = (product.rate + rating) / ratecount;
-            productservice.Updateproduct(product);
+          await  productservice.Updateproduct(product);
 
         }
 
@@ -67,7 +67,7 @@ namespace Ecommerce.BL.Services
 
             var ratecount = repository.GetAllasync().Result.Count();
             product.rate = (product.rate - Convert.ToInt32(rate.product_rating)) / ratecount;
-            productservice.Updateproduct(product);
+          await  productservice.Updateproduct(product);
             await repository.Delete(rate);
         }
 
