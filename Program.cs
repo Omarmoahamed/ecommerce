@@ -12,24 +12,26 @@ using System.Text;
 using WebApplication2.DAL.models;
 
 var builder = WebApplication.CreateBuilder(args);
-#region Services BL
-builder.Services.AddScoped(typeof(IRepository<>), typeof(GeneralRepository<>));
-builder.Services.AddScoped<Iapplydiscountservice, Applieddiscount>();
-builder.Services.AddScoped<Idiscountservice, discountservice>();
-builder.Services.AddScoped<Iapplydiscountservice, Applieddiscount>();
-builder.Services.AddScoped<Iproductservice, productservice>();
-builder.Services.AddScoped<IOrderservice, Orderservice>();
-builder.Services.AddScoped<Irateservice, Rateservice>();
-builder.Services.AddScoped<Icategoryservice,Categoryservice>();
-builder.Services.AddHttpContextAccessor();
 
-#endregion 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(opts => 
 {
     opts.UseSqlServer(builder.Configuration["ConnectionStrings:dbConnection"]);
     opts.EnableSensitiveDataLogging(true);
 });
+#region Services BL
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GeneralRepository<>));
+builder.Services.AddScoped<Iapplydiscountservice, Applieddiscount>();
+builder.Services.AddScoped<Idiscountservice, discountservice>();
+builder.Services.AddScoped<Iproductservice, productservice>();
+builder.Services.AddScoped<IOrderservice, Orderservice>();
+builder.Services.AddScoped<Irateservice, Rateservice>();
+builder.Services.AddScoped<Icategoryservice, Categoryservice>();
+builder.Services.AddScoped<Ishoppingcart, Shoppingcartservice>();
+builder.Services.AddScoped<Ishoppingcartitemservice, Shoppingcartitemservice>();
+builder.Services.AddHttpContextAccessor();
+
+#endregion 
 
 builder.Services.AddIdentity<User,IdentityRole>().AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 builder.Services.AddIdentityCore<User>();

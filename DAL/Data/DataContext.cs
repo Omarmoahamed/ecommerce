@@ -33,7 +33,7 @@ namespace Ecommerce.DAL.Data
 
             modelBuilder.Entity<User>().Property(u => u.specs).HasConversion<int>();
 
-            modelBuilder.Entity<discount>().Property(d=>d.discount_type).HasConversion<int>();
+            modelBuilder.Entity<discount>().Property(d => d.discount_type).HasConversion<int>();
 
 
 

@@ -57,6 +57,7 @@ namespace Ecommerce.BL.Services
                 shoppingcart.totalquantity= shoppingcart.totalquantity + 1;
                 shoppingcart.Totalcost = shoppingcart.Totalcost + cartitem.price;
                 await shoppingcart_repository.Update(shoppingcart);
+                await Repository.Update(cartitem);
             }
 
 
