@@ -6,8 +6,6 @@ namespace Ecommerce.BL.Services
     {
         public Task Add_discount(discount discount);
 
-       
-
         public Task Update_discount(discount discount);
 
         public Task Delete_discount(int discountid);

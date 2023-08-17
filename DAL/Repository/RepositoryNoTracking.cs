@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Ecommerce.DAL.Repository
 {
-    public class RepositoryNoTracking<Tentity> : GeneralRepository<Tentity> where Tentity : Baseentity
+    public class RepositoryNoTracking<Tentity> : GeneralRepository<Tentity>, IrepositoryNoTracking<Tentity> where Tentity : Baseentity
     {
       
         // This extended class from generalrepository is for better preformance using AsNoTracking to just only read data.
@@ -16,9 +16,9 @@ namespace Ecommerce.DAL.Repository
 
         }
 
-        public async Task<IEnumerable< Tentity>> getlistbyidNoTracking(int id) 
+        public async Task< Tentity> GetbyidNoTracking(int id) 
         {
-           var item = await dbset.Where(x => x.ID == id).AsNoTracking().ToListAsync();
+           var item = await dbset.Where(x => x.ID == id).AsNoTracking().FirstOrDefaultAsync();
 
             return item!;
 
@@ -31,13 +31,21 @@ namespace Ecommerce.DAL.Repository
             return items;
 
         }
-        public async Task<Tentity> getbyidNoTracking(params Expression<Func<Tentity,bool>>[] exp)
+        public async Task<Tentity> GetbyidNoTracking(params Expression<Func<Tentity,bool>>[] exp)
         {
             var expression = exp[0];
             var item = await dbset.Where(expression).AsNoTracking().FirstOrDefaultAsync();
 
             return item!;
 
+        }
+
+        public async Task<IEnumerable<Tentity>> GetlistbyidNoTracking(params Expression<Func<Tentity, bool>>[] exp) 
+        {
+            var expression = exp[0];
+            var items = await dbset.AsNoTracking().Where(expression).ToListAsync();
+
+            return items;
         }
 
 

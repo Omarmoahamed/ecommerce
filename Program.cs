@@ -21,6 +21,7 @@ builder.Services.AddDbContext<DataContext>(opts =>
 });
 #region Services BL
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GeneralRepository<>));
+builder.Services.AddScoped(typeof(IrepositoryNoTracking<>), typeof(RepositoryNoTracking<>));
 builder.Services.AddScoped<Iapplydiscountservice, Applieddiscount>();
 builder.Services.AddScoped<Idiscountservice, discountservice>();
 builder.Services.AddScoped<Iproductservice, productservice>();
