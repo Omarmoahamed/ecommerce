@@ -97,10 +97,11 @@ namespace Ecommerce.EcommerceAPI.controllers
 
         public async Task<ActionResult> deletediscount(int id) 
         {
-            await discountservice.delete(id);
+            await discountservice.Delete_discount(id);
             return Ok("discount is deleted");
 
         }
+
 
         [HttpDelete]
         [Route("delete/productdiscount")]

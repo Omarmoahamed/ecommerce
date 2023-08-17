@@ -45,31 +45,28 @@ namespace Ecommerce.BL.Services
            await discount_repository.Update(discount);
         }
 
-        public  async IAsyncEnumerable<discountapplied_product> Delete_discount(int discountid) 
+        public  async Task Delete_discount(int discountid) 
         {
             var discount = await discount_repository.Getbyidasync(discountid);
             
+
             if (discount.discount_type == discount.discounttype.discount_product) 
             {
                var discountproduct =  await discountapplied_product_repository.Getbyidsasync(d => d.discount_id == discount.ID);
                 await discount_repository.Delete(discountid);
                 foreach (var productdiscount in discountproduct) 
                 {
-                    yield return productdiscount;
+                    discountapplied_product_repository.delete(productdiscount); 
                 }
+
+
             }
             await discount_repository.Delete(discountid);
+            await discount_repository.saveasync();
         }
         
 
-        public async Task delete(int id) 
-        {
-            await foreach(var discountproduct in this.Delete_discount(id)) 
-            {
-              await   productdiscountservice.deleteproductdiscount(discountproduct);
-            }
-        }
-
+      
         public async Task<IList<discount>> Get_discountasync() 
         {
             var discounts = await discount_repository.GetAllasync();

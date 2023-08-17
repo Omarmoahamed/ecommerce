@@ -28,7 +28,7 @@ namespace Ecommerce.BL.Services
 
         public async Task addcartitem(int id) 
         {
-       var shoppingcart = await cart.Addshoppingcart();
+       var shoppingcart = await cart.GetShoppingcart();
 
             var cartgid =  httpContext.Request.Cookies["cartid"];
             var product = await ProductRepository.Getbyidasync(id);

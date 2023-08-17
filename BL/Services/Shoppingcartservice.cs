@@ -21,15 +21,14 @@ namespace Ecommerce.BL.Services
         public async Task<Shoppingcart> Addshoppingcart() 
         {
             Shoppingcart shoppingcart = new Shoppingcart();
-            if (httpContext!.Request.Cookies["cartid"] == null)
-            {   
+            
                 var cartguid = shoppingcart.cartguid;
-                httpContext.Response.Cookies.Append("cartid", cartguid.ToString(), new CookieOptions() { MaxAge = TimeSpan.FromDays(399)} );
-              await  repository.Add(shoppingcart);
+                httpContext!.Response.Cookies.Append("cartid", cartguid.ToString(), new CookieOptions() { MaxAge = TimeSpan.FromDays(399)} );
+                await  repository.Add(shoppingcart);
                 return shoppingcart;
                
-            }
-            return shoppingcart;
+            
+            
             
         }
 

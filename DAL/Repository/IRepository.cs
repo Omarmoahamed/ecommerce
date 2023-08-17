@@ -15,6 +15,8 @@ namespace Ecommerce.DAL.Repository
 
         Task<Tentity> Getbyidasync(params Expression<Func<Tentity, bool>>[] expression);
         Task Add(Tentity entity);
+        void delete(Tentity entity);
+        Task saveasync();
 
         Task Update(Tentity entity);
         Task Delete(int id);

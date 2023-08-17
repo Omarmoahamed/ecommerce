@@ -39,7 +39,7 @@ namespace Ecommerce.DAL.Repository
          Tentity? entity = await dbset.FindAsync(id);
             
 
-            return entity;
+            return entity!;
         }
 
         public async Task<IList<Tentity>> Getbyidsasync(int id) 
@@ -75,7 +75,12 @@ namespace Ecommerce.DAL.Repository
 
             await dataContext.SaveChangesAsync();
         }
-         
+         public void delete(Tentity entity) 
+        {
+            dbset.Remove(entity);
+        }
+
+
         public async Task Delete(Tentity entity) 
         {
              dbset.Remove(entity);
@@ -99,6 +104,12 @@ namespace Ecommerce.DAL.Repository
 
             
         }
+
+        public async Task saveasync() 
+        {
+            await dataContext.SaveChangesAsync();
+        }
+
 
         public async Task Update(Tentity tentity) 
         {
